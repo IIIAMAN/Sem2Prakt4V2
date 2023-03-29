@@ -93,7 +93,7 @@ namespace Prakticheskaya4
             Dictionary<string, List<NewTypeDate>> deserialize = SerDeser.MyDeserialize<Dictionary<string, List<NewTypeDate>>>();
             var jojo = deserialize;
 
-            
+
             NewTypeDate selected = ComboBox.SelectedItem as NewTypeDate;
             if (selected != null)
             {
@@ -290,17 +290,16 @@ namespace Prakticheskaya4
                                 if (item1.Name == selected.Name)
                                 {
                                     item1.Name = NameZametka.Text;
+                                    int save = Int32.Parse(PriceZametka.Text);
                                     item1.Money = PriceZametka.Text;
                                     item1.TypeName = TypeZametka.Text;
-                                    if (Int32.Parse(item1.Money) > 0)
+
+                                    if (save > 0)
                                     {
                                         item1.Vichet = true;
                                     }
                                     else
                                     {
-                                        int poi = Int32.Parse(item1.Money);
-                                        poi = poi * -1;
-                                        item1.Money = poi.ToString();
                                         item1.Vichet = false;
                                     }
 
@@ -328,6 +327,11 @@ namespace Prakticheskaya4
             {
                 Dictionary<string, List<NewTypeDate>> deserialize = SerDeser.MyDeserialize<Dictionary<string, List<NewTypeDate>>>();
                 var jojo = deserialize;
+
+                if (ComboBox.Items.Count > 0)
+                {
+                    LabelItog.Content = "Итог: 0";
+                }
 
                 foreach (var item in jojo)
                 {
@@ -380,7 +384,7 @@ namespace Prakticheskaya4
             {
                 DataPick_SelectedDateChanged(sender, e);
             }
-            
+
         }
     }
 }
